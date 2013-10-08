@@ -1,0 +1,28 @@
+--- geofield.module
++++ geofield.module
+@@ -203,11 +209,20 @@
+  *  If validates, return NULL, else error text
+  */
+ function geofield_validate_geom($item) {
+-  try {  
+-   $values = geofield_compute_values($item['geom'], $item['input_format']);
+-  }  
+-  catch (Exception $e) {  
+-   return $e;  
++  if (is_string($item)) {
++    try {
++      $values = geofield_compute_values($item);
++    } catch (Exception $e) {
++      return $e;
++    }
++  }
++  else {
++    try {
++     $values = geofield_compute_values($item['geom'], $item['input_format']);
++    }
++    catch (Exception $e) {
++     return $e;
++    }
+   }
+   return NULL;
+ }

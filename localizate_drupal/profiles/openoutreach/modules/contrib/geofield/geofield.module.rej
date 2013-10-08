@@ -1,0 +1,11 @@
+--- geofield.module
++++ geofield.module
+@@ -256,7 +256,7 @@
+     }
+   }
+   else {
+-    return empty($item['geom']);
++    return is_string($item) ? empty($item) : empty($item['geom']);
+   }
+ }
+ 

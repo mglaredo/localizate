@@ -1,0 +1,22 @@
+diff --git a/geofield.module b/geofield.module
+index ce7de06..5c733a5 100644
+--- a/geofield.module
++++ b/geofield.module
+@@ -256,7 +256,7 @@ function geofield_geom_is_empty($item) {
+     }
+   }
+   else {
+-    return empty($item['geom']);
++    return is_string($item) ? empty($item) : empty($item['geom']);
+   }
+ }
+ 
+@@ -333,7 +333,7 @@ function geofield_field_is_empty($item, $field) {
+     }
+   }
+   //@@TODO: Check if it's an empty geometry as per geoPHP $geometry->empty()
+-  return empty($item['geom']);
++  return is_string($item) ? empty($item) : empty($item['geom']);
+ }
+ 
+ /**
